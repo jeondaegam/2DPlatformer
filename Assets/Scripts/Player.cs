@@ -5,7 +5,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
-    public float speed = 7f;
+    public float speed = 10f;
+    public float jumpSpeed = 15f;
+
     private float velocityX; // X축 방향 
 
     // Start is called before the first frame update
@@ -19,6 +21,11 @@ public class Player : MonoBehaviour
     {
         // velocityX = -1 or +1 
         velocityX = Input.GetAxisRaw("Horizontal");
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            GetComponent<Rigidbody2D>().velocity = Vector2.up * jumpSpeed;
+        }
     }
 
     private void FixedUpdate()
