@@ -48,11 +48,9 @@ public class Player : MonoBehaviour
                 if (velocityX==0)
                 {
                     GetComponent<Animator>().SetTrigger("Idle");
-                    Debug.Log("Idle");
                 } else
                 {
                     GetComponent<Animator>().SetTrigger("Run");
-                    Debug.Log("Run");
                 }
             } else
             {
