@@ -7,8 +7,10 @@ public class Player : MonoBehaviour
 
     public float speed = 10f;
     public float jumpSpeed = 15f;
-    private float velocityX; // X축 방향 
 
+
+    private float velocityX; // X축 방향 
+    private float prevVx; // 이전 속도 
 
     
     public Collider2D bottomCollider;
@@ -19,6 +21,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         velocityX = 0;
+        prevVx = 0;
     }
 
     // Update is called once per frame
@@ -27,14 +30,82 @@ public class Player : MonoBehaviour
         // 1. 방향키 입력받기 (velocityX = -1 or +1) 
         velocityX = Input.GetAxisRaw("Horizontal");
 
+
+        if(velocityX < 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        } else if (velocityX > 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+        // 0일때는 아무런 액션을 취하지 않고 이전 방향을 보고 있는다 . 
+
+
         // 2. 땅에 있는지 체크
-        isGrounded = bottomCollider.IsTouching(terrainCollider);
+        if (bottomCollider.IsTouching(terrainCollider))
+        {
+            if(!isGrounded) {
+                if (velocityX==0)
+                {
+                    GetComponent<Animator>().SetTrigger("Idle");
+                    Debug.Log("Idle");
+                } else
+                {
+                    GetComponent<Animator>().SetTrigger("Run");
+                    Debug.Log("Run");
+                }
+            } else
+            {
+                // 계속 걷는 중 
+                if (prevVx != velocityX)
+                {
+                    if (velocityX == 0)
+                    {
+                        GetComponent<Animator>().SetTrigger("Idle");
+                    } else
+                    {
+                        GetComponent<Animator>().SetTrigger("Run");
+                    }
+                }
+            }
+            isGrounded = true;
+        }
+        else // 땅에 붙어있지 않는 경우 
+        {
+            // 전에는 붙어 있었다면 ?
+            if (isGrounded)
+            {
+                // 점프 
+                GetComponent<Animator>().SetTrigger("Jump");
+            }
+            isGrounded = false;
+        }
+
+
+        // 제자리에 서있을 때 Idle 모션 
+        //if (isGrounded && velocityX == 0)
+        //{
+        //    GetComponent<Animator>().SetTrigger("Idle");
+        //    Debug.Log("Idle");
+        //}
+        //// Run: 달리는중 
+        //else if (isGrounded && velocityX !=0)
+        //{
+        //    GetComponent<Animator>().SetTrigger("Run");
+        //    Debug.Log("Run");
+        //}
 
         // 3. 땅에 있는 경우만 점프 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             GetComponent<Rigidbody2D>().velocity = Vector2.up * jumpSpeed;
+
+            // Jump 모션 
+            //GetComponent<Animator>().SetTrigger("Jump");
+            //Debug.Log("Jump");
         }
+
+        prevVx = velocityX;
 
     }
 
