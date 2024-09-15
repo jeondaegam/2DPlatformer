@@ -11,7 +11,15 @@ public class Fruit : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             GameManager.Instance.AddTime(timeAdd);
-            Destroy(gameObject);
+            GetComponent<Animator>().SetTrigger("Eaten");
+
+            // 애니메이션이 끝난 시점인 0.3초 후 Destroy
+            Invoke("DestroyThis", 0.3f);
         }
+    }
+
+    private void DestroyThis()
+    {
+        Destroy(gameObject);
     }
 }
