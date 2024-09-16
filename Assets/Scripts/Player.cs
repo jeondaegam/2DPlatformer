@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class Player : MonoBehaviour
 
     public float speed = 10f;
     public float jumpSpeed = 15f;
+    private Vector2 originPosition;
 
 
     private float velocityX; // X축 방향 
@@ -22,6 +24,7 @@ public class Player : MonoBehaviour
     {
         velocityX = 0;
         prevVx = 0;
+        originPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -113,6 +116,12 @@ public class Player : MonoBehaviour
         transform.Translate(Vector2.right * velocityX * speed * Time.fixedDeltaTime);
     }
 
+    internal void Restart()
+    {
+        transform.position = originPosition;
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+    }
+
 
 
     // 1. 캐릭터의 발(bottom) 부분에 캡슐 콜라이더 추가
@@ -120,6 +129,6 @@ public class Player : MonoBehaviour
     // 2. Terrain의 콜라이더와 Bottom 콜라이더를 레퍼런싱
     // 3. collider.IsToucing : true / false
     // 4. true 일 때만 점프 가능하도록
-    
+
 
 }
