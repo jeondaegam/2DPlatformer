@@ -11,9 +11,11 @@ public class GameManager : MonoBehaviour
     public float timeLimit = 30f;
     public TextMeshProUGUI scoreLabel;
 
-    private int lives = 3;
     public GameObject virtualCamera;
     public Player player;
+
+    private int lives = 3;
+    public Lives lifeDisplayer;
 
     private void Awake()
     {
@@ -23,7 +25,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        lifeDisplayer.SetLives(lives);
     }
 
     // Update is called once per frame
@@ -51,6 +53,7 @@ public class GameManager : MonoBehaviour
         // 카메라 무빙 중지 
         virtualCamera.SetActive(false);
         lives--;
+        lifeDisplayer.SetLives(lives);
 
         // 죽은 후 애니메이션 등 처리를 위해 2초의 텀을 두고 함수 호출 
         Invoke("CheckPlayerLives", 2f);
