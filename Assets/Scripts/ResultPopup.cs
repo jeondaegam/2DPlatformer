@@ -18,8 +18,9 @@ public class ResultPopup : MonoBehaviour
 
     private void OnEnable()
     {
+        // 일시정지 (시간 흐름을 멈춘다)
+        Time.timeScale = 0;
 
-        //Time.timeScale = 0;
         if (GameManager.Instance.isCleared)
         {
             titleLabel.text = "CLEAR!!";
