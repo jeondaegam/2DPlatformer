@@ -19,7 +19,6 @@ public class ResultPopup : MonoBehaviour
     private void OnEnable()
     {
         // 일시정지 (시간 흐름을 멈춘다)
-        Time.timeScale = 0;
 
         if (GameManager.Instance.isCleared)
         {
@@ -28,6 +27,7 @@ public class ResultPopup : MonoBehaviour
         }
         else
         {
+            Time.timeScale = 0;
             titleLabel.text = "GAME OVER";
             scoreLabel.text = "";
         }

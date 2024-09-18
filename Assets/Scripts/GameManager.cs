@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public GameObject resultPopup;
     public bool isCleared;
 
+
     private void Awake()
     {
         Instance = this;
@@ -28,14 +29,19 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isCleared = false;
         lifeDisplayer.SetLives(lives);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(!isCleared)
+        {
         timeLimit -= Time.deltaTime;
         scoreLabel.text = timeLimit.ToString("00.00");
+
+        }
     }
 
 
