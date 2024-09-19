@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     private bool isGrounded;
 
     public GameObject bulletPrefab;
+    private float lastShoot; // 마지막 슈팅 시간 
+    private float coolTime = .5f;
 
     // Start is called before the first frame update
     void Start()
@@ -115,7 +117,7 @@ public class Player : MonoBehaviour
         }
 
         // 총알 슈팅 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && Time.time > (lastShoot + coolTime))
         {
             Vector2 bulletVelocity = Vector2.zero;
 
@@ -130,12 +132,15 @@ public class Player : MonoBehaviour
                 bulletVelocity = new Vector2(10, 0);
             }
 
-            GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            GameObject bullet = Instantiate(bulletPrefab);
+            bullet.transform.position = transform.position;
             bullet.GetComponent<Bullet>().velocity = bulletVelocity;
-            Debug.Log("fire 1");
+            lastShoot = Time.time;
         }
 
         prevVx = velocityX;
+        
+
     }
 
     private void FixedUpdate()
