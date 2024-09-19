@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     public CompositeCollider2D terrainCollider;
     private bool isGrounded;
 
-    public GameObject bulletPrefab;
+    // 총알 슈팅 
     private float lastShoot; // 마지막 슈팅 시간 
     private float coolTime = .5f;
 
@@ -132,16 +132,16 @@ public class Player : MonoBehaviour
                 bulletVelocity = new Vector2(10, 0);
             }
 
-            GameObject bullet = Instantiate(bulletPrefab);
+            //GameObject bullet = Instantiate(bulletPrefab);
+            GameObject bullet = ObjectPool.Instance.GetBullet();
             bullet.transform.position = transform.position;
             bullet.GetComponent<Bullet>().velocity = bulletVelocity;
             lastShoot = Time.time;
         }
 
         prevVx = velocityX;
-        
-
     }
+
 
     private void FixedUpdate()
     {
