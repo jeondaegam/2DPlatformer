@@ -14,10 +14,12 @@ public class Player : MonoBehaviour
     private float velocityX; // X축 방향 
     private float prevVx; // 이전 속도 
 
-    
+
     public Collider2D bottomCollider;
     public CompositeCollider2D terrainCollider;
     private bool isGrounded;
+
+    public GameObject bulletPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -34,10 +36,12 @@ public class Player : MonoBehaviour
         velocityX = Input.GetAxisRaw("Horizontal");
 
 
-        if(velocityX < 0)
+        // 캐릭터 좌우 방향 체크 
+        if (velocityX < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
-        } else if (velocityX > 0)
+        }
+        else if (velocityX > 0)
         {
             GetComponent<SpriteRenderer>().flipX = false;
         }
@@ -47,15 +51,18 @@ public class Player : MonoBehaviour
         // 2. 땅에 있는지 체크
         if (bottomCollider.IsTouching(terrainCollider))
         {
-            if(!isGrounded) {
-                if (velocityX==0)
+            if (!isGrounded)
+            {
+                if (velocityX == 0)
                 {
                     GetComponent<Animator>().SetTrigger("Idle");
-                } else
+                }
+                else
                 {
                     GetComponent<Animator>().SetTrigger("Run");
                 }
-            } else
+            }
+            else
             {
                 // 계속 걷는 중 
                 if (prevVx != velocityX)
@@ -63,7 +70,8 @@ public class Player : MonoBehaviour
                     if (velocityX == 0)
                     {
                         GetComponent<Animator>().SetTrigger("Idle");
-                    } else
+                    }
+                    else
                     {
                         GetComponent<Animator>().SetTrigger("Run");
                     }
@@ -106,8 +114,28 @@ public class Player : MonoBehaviour
             //Debug.Log("Jump");
         }
 
-        prevVx = velocityX;
+        // 총알 슈팅 
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Vector2 bulletVelocity = Vector2.zero;
 
+            if (GetComponent<SpriteRenderer>().flipX)
+            {
+                // 왼쪽으로 
+                bulletVelocity = new Vector2(-10, 0);
+            }
+            else
+            {
+                // 오른쪽으로 
+                bulletVelocity = new Vector2(10, 0);
+            }
+
+            GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            bullet.GetComponent<Bullet>().velocity = bulletVelocity;
+            Debug.Log("fire 1");
+        }
+
+        prevVx = velocityX;
     }
 
     private void FixedUpdate()
