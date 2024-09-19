@@ -151,8 +151,52 @@ public class Player : MonoBehaviour
 
     internal void Restart()
     {
+
+        // 플레이어 사망시 회전 모션을 원래대로
+        // 1. Z축 회전 방지 
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        // FreezeRotation으로 회전을 막아주기 때문에 각속도는 자동으로 0으로 설정된다 
+        //GetComponent<Rigidbody2D>().angularVelocity = 0;
+
+        // 2. 회전 각도 초기화 
+        transform.eulerAngles = Vector3.zero;
+
+        // 3. 콜라이더 On
+        GetComponent<Collider2D>().enabled = true;
+
+        // 4. 리스폰, 게임 시작 위치에서 
         transform.position = originPosition;
+
+        // 5. 속도 초기화
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+    }
+
+
+    // 양쪽 모두 트리거가 안켜져있는 경우 사용 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Enemy!");
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        // 두번 회전 후 추락
+
+        // 1. Constraints 설정 끄기 
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+        // 2. 각속도 추가, 1초에 2바퀴 회전 
+        GetComponent<Rigidbody2D>().angularVelocity = 720;
+        // 3. 붕 뜨는 효과
+        GetComponent<Rigidbody2D>().AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+        // 4. 추락 = 콜라이더 끄기 
+        GetComponent<Collider2D>().enabled = false;
+
+        GameManager.Instance.Die();
     }
 
 
