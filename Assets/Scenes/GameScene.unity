@@ -239,9 +239,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1048379452}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 250, y: -50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &45162005
@@ -505,9 +505,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1048379452}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 150, y: -50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &162432852
@@ -824,9 +824,9 @@ GameObject:
   - component: {fileID: 350398482}
   - component: {fileID: 350398484}
   - component: {fileID: 350398483}
+  - component: {fileID: 350398487}
   - component: {fileID: 350398486}
   - component: {fileID: 350398488}
-  - component: {fileID: 350398487}
   m_Layer: 0
   m_Name: Tilemap
   m_TagString: Terrain
@@ -7391,7 +7391,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.2028302, g: 0.5361201, b: 1, a: 0}
+  m_BackGroundColor: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -7580,7 +7580,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &653075080
 Transform:
   m_ObjectHideFlags: 0
@@ -8086,9 +8086,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1048379452}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1132105796
@@ -8625,7 +8625,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 8212922268179201430, guid: 7c0d261aa90264451a031458a6fd4c11, type: 3}
   bullets: []
-  bulletLimit: 30
+  bulletLimit: 5
 --- !u!4 &1468110492 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 193761346124873956, guid: 942ee0c9b7b4a47b6843b0e1360105c9, type: 3}
@@ -9786,17 +9786,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1351839090810245096, guid: 49f3e5dacf9b548f7abe973182cee5df, type: 3}
-      propertyPath: m_GravityScale
-      value: 6.5
-      objectReference: {fileID: 0}
+    - target: {fileID: 656438315529763149, guid: 49f3e5dacf9b548f7abe973182cee5df, type: 3}
+      propertyPath: terrainCollider
+      value: 
+      objectReference: {fileID: 350398487}
     - target: {fileID: 6109956459378141753, guid: 49f3e5dacf9b548f7abe973182cee5df, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.82
+      value: 0.69
       objectReference: {fileID: 0}
     - target: {fileID: 6109956459378141753, guid: 49f3e5dacf9b548f7abe973182cee5df, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.36
+      value: -2.12
       objectReference: {fileID: 0}
     - target: {fileID: 6109956459378141753, guid: 49f3e5dacf9b548f7abe973182cee5df, type: 3}
       propertyPath: m_LocalPosition.z

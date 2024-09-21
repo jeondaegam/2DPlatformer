@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public Vector2 velocity = new Vector2(10, 0);
+    public int damage = 1;
 
 
     private void FixedUpdate()
@@ -17,6 +18,10 @@ public class Bullet : MonoBehaviour
     {
         if (collision.CompareTag("Terrain"))
         {
+            gameObject.SetActive(false);
+        } else if (collision.CompareTag("Enemy"))
+        {
+            collision.GetComponent<Enemy>().Hit(damage);
             gameObject.SetActive(false);
         }
     }

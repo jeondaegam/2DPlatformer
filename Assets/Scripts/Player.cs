@@ -187,7 +187,7 @@ public class Player : MonoBehaviour
     {
         // 두번 회전 후 추락
 
-        // 1. Constraints 설정 끄기 
+        // 1. Constraints 설정 끄기, 회전 가능하도록
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
         // 2. 각속도 추가, 1초에 2바퀴 회전 
         GetComponent<Rigidbody2D>().angularVelocity = 720;
