@@ -31,6 +31,15 @@ public class GameManager : MonoBehaviour
     {
         isCleared = false;
         lifeDisplayer.SetLives(lives);
+        //InitScores();
+    }
+
+    private void InitScores()
+    {
+        PlayerPrefs.SetString("HighScores", "");
+        PlayerPrefs.Save();
+        Debug.Log("Init Scores OK ");
+        Debug.Log($"Scores :{PlayerPrefs.GetString("HighScores", "")}");
     }
 
     // Update is called once per frame

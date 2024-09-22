@@ -9664,19 +9664,20 @@ MonoBehaviour:
 
     3. Score
 
-    Score
+    4. Score
 
-    Score
+    <color=yellow>5.
+    abcde</color>
 
-    Score
+    6. Score
 
-    Score
+    7. Score
 
-    Score
+    8. Score
 
-    Score
+    9. Score
 
-    Score'
+    10.Score'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9fd384eb577214d31ae0d66b0c14a50f, type: 2}
   m_sharedMaterial: {fileID: -2736613536854522043, guid: 9fd384eb577214d31ae0d66b0c14a50f, type: 2}
@@ -11142,7 +11143,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8359541806552176902, guid: 49f3e5dacf9b548f7abe973182cee5df, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

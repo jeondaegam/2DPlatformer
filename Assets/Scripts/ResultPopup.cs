@@ -76,11 +76,15 @@ public class ResultPopup : MonoBehaviour
                     // for문을 빠져나온다 
                     break;
                 }
+            }
 
-                // for문을 탈출하지 못하고 밑으로 나온 경우 : 나보다 작은 점수가 없다는 것
+            // 적절한 위치를 찾지 못한 경우 : 내 점수가 가장 낮다
+            if (scoreArr.Length == scoreList.Count)
+            {
                 scoreList.Add(currentScoreString);
             }
-           
+
+
             // 7. 10위까지만 저장한다 . 
             if (scoreList.Count > 10)
             {
@@ -91,6 +95,7 @@ public class ResultPopup : MonoBehaviour
             //8. 현재 점수가 추가된 리스트를 string으로 변환 후 저장한다 .
             string result = string.Join(",", scoreList);
             PlayerPrefs.SetString("HighScores", result);
+            PlayerPrefs.SetString("MyScore", currentScoreString);
             PlayerPrefs.Save();
 
         }
