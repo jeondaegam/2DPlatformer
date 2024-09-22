@@ -27,7 +27,7 @@ public class ResultPopup : MonoBehaviour
         {
             titleLabel.text = "CLEAR!!";
             scoreLabel.text = GameManager.Instance.timeLimit.ToString("00.00");
-            
+
             SaveHighScore();
         }
         else
@@ -54,7 +54,8 @@ public class ResultPopup : MonoBehaviour
         {
             // 5. 현재 점수 저장 
             PlayerPrefs.SetString("HighScores", currentScoreString);
-        } else
+        }
+        else
         {
             // 6. 저장된 점수가 있다면 ?
 
@@ -64,10 +65,10 @@ public class ResultPopup : MonoBehaviour
             List<string> scoreList = new List<string>(scoreArr);
 
             //6-3. 현재 점수 순위 찾기
-            for (int i = 0; i<scoreList.Count; i++)
+            for (int i = 0; i < scoreList.Count; i++)
             {
                 float savedScore = float.Parse(scoreList[i]);
-                    // 현재 점수보다 작은 점수를 발견하면
+                // 현재 점수보다 작은 점수를 발견하면
                 if (savedScore < score)
                 {
                     // 그 위치에 insert 한다 .
@@ -78,12 +79,13 @@ public class ResultPopup : MonoBehaviour
 
                 // for문을 탈출하지 못하고 밑으로 나온 경우 : 나보다 작은 점수가 없다는 것
                 scoreList.Add(currentScoreString);
-
-                // 7. 10위까지만 저장한다 . 
-                if (scoreList.Count > 10)
-                {
-                    scoreList.RemoveAt(10);
-                }
+            }
+           
+            // 7. 10위까지만 저장한다 . 
+            if (scoreList.Count > 10)
+            {
+                Debug.Log(scoreList.Count);
+                scoreList.RemoveAt(10);
             }
 
             //8. 현재 점수가 추가된 리스트를 string으로 변환 후 저장한다 .
@@ -91,7 +93,6 @@ public class ResultPopup : MonoBehaviour
             PlayerPrefs.SetString("HighScores", result);
             PlayerPrefs.Save();
 
-            Debug.Log(PlayerPrefs.GetString("HighScores"));
         }
 
     }
