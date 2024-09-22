@@ -12,7 +12,7 @@ public class ObjectPool : MonoBehaviour
     // 인스턴싱할 개수
     public List<GameObject> bullets;
 
-    public int bulletLimit = 30;
+    public int bulletLimit = 10;
 
     private void Awake()
     {
@@ -47,8 +47,11 @@ public class ObjectPool : MonoBehaviour
         }
         // 만약 리턴할 총알이 없는 경우 새로 생성
         GameObject newBullet = Instantiate(bulletPrefab, transform);
+
         newBullet.SetActive(true);
+
         bullets.Add(newBullet);
+
         return newBullet;
     }
 
