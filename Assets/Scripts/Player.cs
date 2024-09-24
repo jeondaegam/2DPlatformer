@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
 
     // 총알 슈팅 
     private float lastShoot; // 마지막 슈팅 시간 
-    private float coolTime = .5f;
+    private float coolTime = .3f;
 
     // Start is called before the first frame update
     void Start()
@@ -113,7 +113,7 @@ public class Player : MonoBehaviour
 
             // Jump 모션 
             //GetComponent<Animator>().SetTrigger("Jump");
-            //Debug.Log("Jump");
+            Debug.Log("Jump");
         }
 
         // 총알 슈팅 

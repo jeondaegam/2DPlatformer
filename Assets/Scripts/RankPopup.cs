@@ -36,9 +36,7 @@ public class RankPopup : MonoBehaviour
             {
                 Debug.Log($"Found! : {myScore}");
 
-                //string highlightedText = $"<color=yellow>{searchString}</color>";
-                //result = result.Replace(searchString, highlightingText);
-                // result에서 searchString과 매칭된 부분을 찾고, 그 매칭된 값(m)이 있으면 문자열 파싱
+                // result에서 searchString과 매칭된 부분을 찾고, 매칭된 값(m)이 있으면 문자열 파싱
                 result = Regex.Replace(result, searchString, m => $"<color=yellow>{m.Value}</color>");
             }
 

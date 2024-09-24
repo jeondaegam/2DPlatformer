@@ -20,8 +20,8 @@ public class Fruit : MonoBehaviour
             // y position이 0으로 고정되서 생성되는것같아서 parent를 transform으로설정
             TextMeshPro floatingPoint = Instantiate(floatingPointPrefab,transform);
             floatingPoint.text = $"+{timeAdd}";
-            //floatingText.enabled = true;
-
+            floatingPoint.enabled = true;
+            Debug.Log("floatingPoint ok");
             // 애니메이션이 끝난 시점인 0.6초 후 Destroy
             // Invoke("DestroyThis", .3f);
             Invoke("DestroyThis", 0.6f);
@@ -30,7 +30,6 @@ public class Fruit : MonoBehaviour
 
     private void DestroyThis()
     {
-        // 
         Destroy(gameObject);
     }
 }
