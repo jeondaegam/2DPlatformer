@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ResultPopup : MonoBehaviour
 {
+    public GameObject RankPopup;
     public TextMeshProUGUI titleLabel;
     public TextMeshProUGUI scoreLabel;
 
-    public GameObject RankPopup;
 
     private void Start()
     {
@@ -113,8 +114,8 @@ public class ResultPopup : MonoBehaviour
         RankPopup.SetActive(true);
     }
 
-    //public void PlayAgainPressed()
-    //{
-    //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    //}
+    public void PlayAgainPressed()
+    {
+        GameManager.Instance.RestartGame();
+    }
 }
