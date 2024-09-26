@@ -90,7 +90,6 @@ public class GameManager : MonoBehaviour
     {
         isCleared = true;
         resultPopup.SetActive(true);
-        //AudioManager.Instance.PlayOnlyThisSound(gameClearSound);
         AudioManager.Instance.PlayeSound(gameClearSound);
     }
 
@@ -98,7 +97,6 @@ public class GameManager : MonoBehaviour
     {
         isCleared = false;
         resultPopup.SetActive(true);
-        //AudioManager.Instance.PlayOnlyThisSound(gameOverSound);
         AudioManager.Instance.PlayeSound(gameOverSound);
     }
 

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class ResultPopup : MonoBehaviour
 {
-    public GameObject RankPopup;
+    public GameObject rankPopup;
     public TextMeshProUGUI titleLabel;
     public TextMeshProUGUI scoreLabel;
 
@@ -50,6 +50,8 @@ public class ResultPopup : MonoBehaviour
         // 3. 저장된 점수를 들고 온다 .
         string savedScores = PlayerPrefs.GetString("HighScores", "");
         // 4. 저장된 점수가 없다면 ?
+
+        PlayerPrefs.SetString("MyScore", currentScoreString);
 
         if (string.IsNullOrEmpty(savedScores))
         {
@@ -95,12 +97,11 @@ public class ResultPopup : MonoBehaviour
 
             //8. 현재 점수가 추가된 리스트를 string으로 변환 후 저장한다 .
             string result = string.Join(",", scoreList);
+
             PlayerPrefs.SetString("HighScores", result);
-            PlayerPrefs.SetString("MyScore", currentScoreString);
-            PlayerPrefs.Save();
-
         }
-
+        
+        PlayerPrefs.Save();
     }
 
     private IEnumerator PauseGame()
@@ -111,7 +112,7 @@ public class ResultPopup : MonoBehaviour
 
     public void RankPressed()
     {
-        RankPopup.SetActive(true);
+        rankPopup.SetActive(true);
     }
 
     public void PlayAgainPressed()
