@@ -23,6 +23,12 @@ public class Player : MonoBehaviour
     private float lastShoot; // 마지막 슈팅 시간 
     private float coolTime = .3f;
 
+    [Header("Sfx")]
+    public AudioClip shootSound;
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -113,7 +119,7 @@ public class Player : MonoBehaviour
 
             // Jump 모션 
             //GetComponent<Animator>().SetTrigger("Jump");
-            Debug.Log("Jump");
+            //Debug.Log("Jump");
         }
 
         // 총알 슈팅 
@@ -137,6 +143,8 @@ public class Player : MonoBehaviour
             bullet.transform.position = transform.position;
             bullet.GetComponent<Bullet>().velocity = bulletVelocity;
             lastShoot = Time.time;
+
+            AudioManager.Instance.PlayeSound(shootSound);
         }
 
         prevVx = velocityX;

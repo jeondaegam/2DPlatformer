@@ -20,6 +20,10 @@ public class GameManager : MonoBehaviour
     public GameObject resultPopup;
     public bool isCleared;
 
+    [Header("Sfx")]
+    public AudioClip gameOverSound;
+    public AudioClip gameClearSound;
+    public AudioClip deathSound;
 
     private void Awake()
     {
@@ -34,13 +38,7 @@ public class GameManager : MonoBehaviour
         //InitScores();
     }
 
-    private void InitScores()
-    {
-        PlayerPrefs.SetString("HighScores", "");
-        PlayerPrefs.Save();
-        Debug.Log("Init Scores OK ");
-        Debug.Log($"Scores :{PlayerPrefs.GetString("HighScores", "")}");
-    }
+
 
     // Update is called once per frame
     void Update()
@@ -52,7 +50,6 @@ public class GameManager : MonoBehaviour
 
         }
     }
-
 
     internal void AddTime(float time)
     {
@@ -69,6 +66,8 @@ public class GameManager : MonoBehaviour
 
         // 생명 UI 수정
         lifeDisplayer.SetLives(lives);
+
+        AudioManager.Instance.PlayeSound(deathSound);
 
         // 죽은 후 애니메이션 등 처리를 위해 2초의 텀을 두고 함수 호출 
         Invoke("CheckPlayerLives", 1f);
@@ -91,17 +90,29 @@ public class GameManager : MonoBehaviour
     {
         isCleared = true;
         resultPopup.SetActive(true);
+        //AudioManager.Instance.PlayOnlyThisSound(gameClearSound);
+        AudioManager.Instance.PlayeSound(gameClearSound);
     }
 
     private void GameOver()
     {
         isCleared = false;
         resultPopup.SetActive(true);
+        //AudioManager.Instance.PlayOnlyThisSound(gameOverSound);
+        AudioManager.Instance.PlayeSound(gameOverSound);
     }
 
     public void RestartGame()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void InitScores()
+    {
+        PlayerPrefs.SetString("HighScores", "");
+        PlayerPrefs.Save();
+        Debug.Log("Init Scores OK ");
+        Debug.Log($"Scores :{PlayerPrefs.GetString("HighScores", "")}");
     }
 }

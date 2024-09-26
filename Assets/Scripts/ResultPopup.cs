@@ -26,7 +26,7 @@ public class ResultPopup : MonoBehaviour
 
         if (GameManager.Instance.isCleared)
         {
-            titleLabel.text = "CLEAR!!";
+            titleLabel.text = "Clear!";
             scoreLabel.text = GameManager.Instance.timeLimit.ToString("00.00");
 
             SaveHighScore();
@@ -34,7 +34,7 @@ public class ResultPopup : MonoBehaviour
         else
         {
             Time.timeScale = 0;
-            titleLabel.text = "GAME OVER";
+            titleLabel.text = "GameOver";
             scoreLabel.text = "";
         }
 

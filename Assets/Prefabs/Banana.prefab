@@ -122,6 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeAdd: 7
   floatingPointPrefab: {fileID: 210292094489419658, guid: dc657c57dcab0470da337954838a54a1, type: 3}
+  itemCollectSound: {fileID: 8300000, guid: fa0069582a57f4eeebc0e3c8bd9c90b0, type: 3}
 --- !u!58 &842902850389515760
 CircleCollider2D:
   m_ObjectHideFlags: 0
