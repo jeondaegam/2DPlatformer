@@ -31,7 +31,7 @@ public class RankPopup : MonoBehaviour
                 result += $"{i + 1}. {scores[i]}\n";
             }
 
-            // 내 순위가 목록에 있다면 하이라이팅
+            // 내 점수가 순위에 있다면 하이라이팅
             if (result.Contains(myScore))
             {
                 Debug.Log($"Found! : {myScore}");

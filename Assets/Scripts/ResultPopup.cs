@@ -22,7 +22,6 @@ public class ResultPopup : MonoBehaviour
 
     private void OnEnable()
     {
-        // 일시정지 (시간 흐름을 멈춘다)
 
         if (GameManager.Instance.isCleared)
         {
@@ -38,6 +37,7 @@ public class ResultPopup : MonoBehaviour
             scoreLabel.text = "";
         }
 
+        // 일시정지 (시간 흐름을 멈춘다)
         //StartCoroutine(PauseGame());
     }
 
@@ -49,13 +49,14 @@ public class ResultPopup : MonoBehaviour
         string currentScoreString = score.ToString("00.00");
         // 3. 저장된 점수를 들고 온다 .
         string savedScores = PlayerPrefs.GetString("HighScores", "");
-        // 4. 저장된 점수가 없다면 ?
 
+        // 현재 점수 저장
         PlayerPrefs.SetString("MyScore", currentScoreString);
 
+        // 4. 저장된 이전 기록이 없다면 ?
         if (string.IsNullOrEmpty(savedScores))
         {
-            // 5. 현재 점수 저장 
+            // 5. 현재 점수를 기록에 저장 
             PlayerPrefs.SetString("HighScores", currentScoreString);
         }
         else

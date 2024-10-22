@@ -50,3 +50,6 @@ public class WavyText : MonoBehaviour
         }
     }
 }
+
+// TMP 오브젝트의 정보를 가져와서
+//사인 함수를 이용한 방향 벡터를 만든 뒤, 각 글자마다 방향벡터를 더해 y축을 이동시킨다 . 
